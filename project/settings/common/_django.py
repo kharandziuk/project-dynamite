@@ -89,7 +89,7 @@ ROOT_URLCONF = 'urls'
 
 WSGI_APPLICATION = 'wsgi.application'
 
-TEMPLATE_DIRS = PROJECT_DIR.child('templates')
+TEMPLATE_DIRS = (PROJECT_DIR.child('templates'),)
 
 LOGGING = {
     'version': 1,
