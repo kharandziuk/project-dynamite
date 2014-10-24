@@ -1,5 +1,7 @@
 # BASE
 Django>=1.6,<1.7
+djangorestframework
+djangorestframework-jwt
 Pillow
 unipath
 psycopg2

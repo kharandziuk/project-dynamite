@@ -8,13 +8,14 @@ class ViewsTestCase(WebTest):
 
     def test_can_sign_up(self):
         USERNAME = 'super-duper-user'
-        response = self.app.post_json(
-            reverse('api-v1:sign-up')
+        response = self.app.post(
+            reverse('api-v1:users'),
             params={
-                'username': USERNAME
-                'password': '123456'
-            }
+                'username': USERNAME,
+                'password': '123456',
+            },
+            xhr=True,
         )
-        self.assertEqual(200, response.status_code)
-        user = models.User.get(username=USERNAME)
+        self.assertEqual(201, response.status_code)
+        user = models.User.objects.get(username=USERNAME)
         self.assertIsNotNone(user)
