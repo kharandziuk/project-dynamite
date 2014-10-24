@@ -1,5 +1,19 @@
-from django.views.generic.base import TemplateView
+from rest_framework import viewsets
+from rest_framework.permissions import AllowAny
+
+import models
+import permissions
+import serializers
 
 
-class TestPageView(TemplateView):
-    template_name = "test.html"
+class UserView(viewsets.ModelViewSet):
+    serializer_class = serializers.UserSerializer
+    model = models.User
+ 
+    def get_permissions(self):
+        # allow non-authenticated user to create via POST
+        if self.request.method == 'POST':
+            return (AllowAny(),)
+        else:
+            return permissions.IsStaffOrTargetUser()
+
