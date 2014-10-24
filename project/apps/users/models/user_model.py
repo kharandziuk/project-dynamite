@@ -13,7 +13,7 @@ class User(AbstractBaseUser, BaseModel):
     USERNAME_FIELD = 'username'
 
     class Meta:
-        app_label = 'core'
+        app_label = 'users'
                      
     #email = models.EmailField(
     #    _('Email'), max_length=255, db_index=True,

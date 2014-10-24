@@ -13,7 +13,7 @@ INSTALLED_APPS = (
     #'sorl.thumbnail',
     'south',
     # own
-    'core',
+    'users',
 )
 
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'

@@ -1,6 +1,6 @@
 from django.conf.urls import patterns, url
 
-from core import views
+from . import views
 
 urlpatterns = patterns('',
     url(r'^users/$', views.UserView.as_view({'post': 'create'}), name='users'),

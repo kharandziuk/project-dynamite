@@ -18,7 +18,7 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-AUTH_USER_MODEL = 'core.User'
+AUTH_USER_MODEL = 'users.User'
 
 
 # Local time zone for this installation. Choices can be found here:
