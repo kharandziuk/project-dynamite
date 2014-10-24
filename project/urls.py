@@ -9,5 +9,5 @@ from core import views
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    url(r'^$', views.TestPageView.as_view(), name='index'),
+    url(r'^api-v1/', include('core.urls', namespace='api-v1')),
 )  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
