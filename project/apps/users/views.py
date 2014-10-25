@@ -8,12 +8,11 @@ import serializers
 
 class UserView(viewsets.ModelViewSet):
     serializer_class = serializers.UserSerializer
-    model = models.User
+    queryset = models.User.objects.all()
  
     def get_permissions(self):
-        # allow non-authenticated user to create via POST
         if self.request.method == 'POST':
             return (AllowAny(),)
         else:
-            return permissions.IsStaffOrTargetUser()
+            return (AllowAny(),)# permissions.IsStaffOrTargetUser(),)
 
