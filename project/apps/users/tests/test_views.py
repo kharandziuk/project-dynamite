@@ -4,7 +4,7 @@ from django_webtest import WebTest
 from .. import models, factories
 
 
-class ViewsTestCase(WebTest):
+class UsersEndpointTestCase(WebTest):
 
     def test_can_sign_up(self):
         _user = factories.UserFactory.build()
@@ -39,4 +39,25 @@ class ViewsTestCase(WebTest):
             #user = user.username
         )
         self.assertEqual(response.status_code, 200)
+
+
+class PostsEndpointTestCase(WebTest):
+
+    def test_can_get_posts(self):
+        user = factories.UserFactory()
+        assert user.posts.count() == 0
+        TEXT = 'some text'
+        TITLE = 'title'
+        response = self.app.post(
+            reverse('api-v1:posts'),
+            params={
+                'title': TITLE,
+                'body': TEXT,
+            },
+            user=user.username,
+            xhr=True,
+        )
+        self.assertEqual(user.posts.objects.count(), 1)
+
+
 
