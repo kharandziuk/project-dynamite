@@ -42,4 +42,17 @@ class User(AbstractBaseUser, BaseModel):
 
     class Meta:
         app_label = 'users'
+
+
+class Post(BaseModel):
+    user = models.ForeignKey(User, related_name='posts')
+    title = models.CharField(
+        ugettext('Username'), max_length=255,
+        db_index=True
+    )
+    body = models.TextField()
+    
+
+    class Meta:
+        app_label = 'users'
                      
