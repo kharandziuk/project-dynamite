@@ -43,9 +43,20 @@ class UsersEndpointTestCase(WebTest):
 
 class PostsEndpointTestCase(WebTest):
 
-    def test_can_get_posts(self):
+    def test_can_create_post(self):
         user = factories.UserFactory()
         assert user.posts.count() == 0
+
+        response = self.app.post(
+            reverse('api-v1:login'),
+            params={
+                'username': user.username,
+                'password': factories.USER_PASSWORD,
+            },
+            xhr=True,
+        )
+        token = response.json['token']
+
         TEXT = 'some text'
         TITLE = 'title'
         response = self.app.post(
@@ -55,9 +66,7 @@ class PostsEndpointTestCase(WebTest):
                 'body': TEXT,
             },
             user=user.username,
-            xhr=True,
+            headers={u'Authorization': 'JWT {}'.format(token)},
         )
-        self.assertEqual(user.posts.objects.count(), 1)
-
-
+        self.assertEqual(user.posts.count(), 1)
 

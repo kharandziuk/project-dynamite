@@ -16,3 +16,10 @@ class UserView(viewsets.ModelViewSet):
         else:
             return (AllowAny(),)# permissions.IsStaffOrTargetUser(),)
 
+
+class PostView(viewsets.ModelViewSet):
+    serializer_class = serializers.PostSerializer
+    queryset = models.User.objects.all()
+
+    def pre_save(self, obj):
+        obj.user = self.request.user
