@@ -20,7 +20,8 @@ class UserFactory(factory.DjangoModelFactory):
 
 class PostFactory(factory.DjangoModelFactory):
 
-    FACTORY_FOR = models.User
+    FACTORY_FOR = models.Post
 
     title = factory.Sequence(lambda i: "title{}".format(i))
     body = factory.Sequence(lambda i: "body{}".format(i))
+    user = factory.SubFactory(UserFactory)
