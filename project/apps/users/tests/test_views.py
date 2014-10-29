@@ -43,7 +43,7 @@ class UsersEndpointTestCase(WebTest):
 
 class PostsEndpointTestCase(WebTest):
 
-    def test_can_create_post(self):
+    def test_user_creates_post(self):
         user = factories.UserFactory()
         assert user.posts.count() == 0
 
@@ -69,4 +69,15 @@ class PostsEndpointTestCase(WebTest):
             headers={u'Authorization': 'JWT {}'.format(token)},
         )
         self.assertEqual(user.posts.count(), 1)
+
+    def test__anonymous__list_of_post(self):
+        posts = [factories.PostFactory() for _ in xrange(5)]
+
+        response = self.app.get(
+            reverse('api-v1:posts'),
+        )
+        actual = response.json
+        self.assertEqual(len(actual), 1)
+        
+    
 
