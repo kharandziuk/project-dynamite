@@ -77,7 +77,7 @@ class PostsEndpointTestCase(WebTest):
             reverse('api-v1:posts'),
         )
         actual = response.json
-        self.assertEqual(len(actual), 1)
+        self.assertEqual(len(actual), 5)
         
     
 

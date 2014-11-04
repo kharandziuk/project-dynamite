@@ -19,7 +19,7 @@ class UserView(viewsets.ModelViewSet):
 
 class PostView(viewsets.ModelViewSet):
     serializer_class = serializers.PostSerializer
-    queryset = models.User.objects.all()
+    queryset = models.Post.objects.all()
 
     def get_permissions(self):
         if self.request.method == 'GET':
