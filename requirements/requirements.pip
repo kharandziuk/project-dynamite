@@ -1,0 +1,18 @@
+# BASE
+Django>=1.6,<1.7
+djangorestframework
+djangorestframework-jwt
+Pillow
+unipath
+psycopg2
+South
+
+#DEV
+Fabric
+
+# TEST
+factory_boy 
+WebTest
+django-webtest 
+django_nose
+ipdb

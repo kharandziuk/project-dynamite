@@ -1,0 +1,12 @@
+*.swp
+*.db
+*.pyc
+*.log
+*.pot
+.idea/*
+project/settings/_secrets.py
+project/node_modules
+project/static/components
+project/static/css
+project/static/js
+public/
