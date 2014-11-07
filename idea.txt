@@ -1,0 +1,36 @@
+I want to create a (tada!!!) dating service. It should answer a question why people sit in front of their laptops and think about other people instead of meeting with them.
+
+The answer to this question is gamification. It should stimulate people to meet with other people.
+The overall idea is to present service as secret society where you can choose somebody(or be chosen). Users know nothing  about other user except their photographs.
+
+The spirit of society can be expressed with those rules: 
+
+1st RULE: You do not talk about DATE CLUB.
+2nd RULE: You DO NOT talk about DATE CLUB.
+3rd RULE: If someone says "stop" the DATE is over.
+4th RULE: Only two ones to a DATE.
+5th RULE: One DATE at a time.
+6th RULE: DATEs will go on as long as they have to.
+7th RULE: If this is your first time at DATE CLUB, you HAVE to DATE.
+
+Usercase 1:
+I install an application on my mobile phone.
+I sign up to the service(via facebook) and create my profile. In reality there is only one option to change -- profile photo.
+New user has no points.
+If user wants to achieve some points he should date with somebody.
+
+Usercase 2:
+User who has enough credits can ask a list(3 or 5) of available peoples to date. He can choose only from the list or open another list(and spent some credits)
+
+These are base usercases but I have a lot of other great ideas.
+
+FAQ:
+- How to check that people met each other:
+-- I think a selfie is a good way to do that
+- What is way to invite newcomers?
+--Users will earn some credits for invites. A little amount for invitation and some more for successful registration
+- What about badges?
+-- There are should be badges for ‘blind date’, date in other city etc
+- What is the target auditory?
+-- Users of social networks in age from 20 till 30. Persons who really want to date instead of surfing the web
+
