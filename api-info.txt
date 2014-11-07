@@ -1,0 +1,2 @@
+{get, post} /api-v1/users/
+{post} /api-v1/login/ - get a token
