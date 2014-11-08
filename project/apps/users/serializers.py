@@ -29,6 +29,7 @@ class UserSerializer(serializers.ModelSerializer):
         url = 'https://graph.facebook.com/me'
         request = requests.get(url, params=values)
         json = request.json()
+        print json
         if 'error' in json:
             assert False
         data = super(UserSerializer, self).validate(attrs)
