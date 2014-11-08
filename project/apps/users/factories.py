@@ -9,7 +9,7 @@ class UserFactory(factory.DjangoModelFactory):
 
     FACTORY_FOR = models.User
 
-    username = factory.Sequence(lambda i: "username{}".format(i))
+    username = factory.Sequence(lambda i: "usernameName{}".format(i))
     password = USER_PASSWORD
 
     @classmethod
@@ -18,10 +18,14 @@ class UserFactory(factory.DjangoModelFactory):
         return manager.create_user(*args, **kwargs)
 
 
-class PostFactory(factory.DjangoModelFactory):
+class AttractionFactory(factory.DjangoModelFactory):
 
-    FACTORY_FOR = models.Post
+    FACTORY_FOR = models.Attraction
 
-    title = factory.Sequence(lambda i: "title{}".format(i))
-    body = factory.Sequence(lambda i: "body{}".format(i))
-    user = factory.SubFactory(UserFactory)
+    name = factory.Sequence(lambda i: "attraction{}".format(i))
+    description = factory.Sequence(lambda i: "description{}".format(i))
+
+    @classmethod
+    def _create(cls, model_class, *args, **kwargs):
+        manager = cls._get_manager(model_class)
+        return manager.create_attraction(*args, **kwargs)
