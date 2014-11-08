@@ -24,15 +24,6 @@ class UserSerializer(serializers.ModelSerializer):
     # I make a request to facebook api
     # if user is defined then get a user id
     def validate(self, attrs):#*args, **kwargs):
-        assert 'fb_access_token' in attrs
-        values = dict(access_token=attrs['fb_access_token'])#social_user.tokens)
-        url = 'https://graph.facebook.com/me'
-        request = requests.get(url, params=values)
-        json = request.json()
-        print json
-        if 'error' in json:
-            assert False
-        data = super(UserSerializer, self).validate(attrs)
         return data
 
 

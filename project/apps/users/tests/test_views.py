@@ -1,6 +1,8 @@
 from django.core.urlresolvers import reverse
 from django_webtest import WebTest
 
+from rest_framework_jwt.settings import api_settings
+
 from .. import models, factories
 
 from mock import call, patch
@@ -39,7 +41,6 @@ class UsersEndpointTestCase(WebTest):
         print response.json
         user = models.User.objects.get(fb_access_token='#token')
         self.assertIsNotNone(user)
-        assert False
 
     def test_user_can_get_and_use_token(self):
         user = factories.UserFactory(
