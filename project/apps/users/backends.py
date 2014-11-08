@@ -1,38 +1,30 @@
-from rest_framework import viewsets
-from rest_framework.permissions import AllowAny
-
-import models
-import permissions
-import serializers
+from django.contrib.auth import get_user_model
 
 
-class UserView(viewsets.ModelViewSet):
-    serializer_class = serializers.UserSerializer
-    queryset = models.User.objects.all()
- 
-    def get_permissions(self):
-        if self.request.method == 'POST':
-            return (AllowAny(),)
-        else:
-            return (AllowAny(),)# permissions.IsStaffOrTargetUser(),)
+class FbBackend( object):
+    """
+    Authenticates against settings.AUTH_USER_MODEL.
+    """
 
+    def authenticate(self, fb_access_token):
+        assert False
+        UserModel = get_user_model()
+        try:
+            user, _ = UserModel._default_manager.get_or_create(username=username)
+            return user
+        except UserModel.DoesNotExist:
+            return None
 
-class PostView(viewsets.ModelViewSet):
-    serializer_class = serializers.PostSerializer
-    queryset = models.Post.objects.all()
+    def get_user(self, user_id):
+        UserModel = get_user_model()
+        try:
+            user = UserModel._default_manager.get(pk=user_id)
+            return user
+        except UserModel.DoesNotExist:
+            return None
+~
 
-    def get_permissions(self):
-        if self.request.method == 'GET':
-            return (AllowAny(),)
-        else:
-            return super(PostView, self).get_permissions()
-        
-
-    def pre_save(self, obj):
-        obj.user = self.request.user
-
-
-class FbWebTokenSerializer(serializers.Serializer):
+class JSONWebTokenSerializer(serializers.Serializer):
     """
     Serializer class used to validate a username and password.
 
@@ -86,23 +78,3 @@ class FbWebTokenSerializer(serializers.Serializer):
         else:
             msg = 'Must include "username" and "password"'
             raise serializers.ValidationError(msg)
-
-
-class ObtainJSONWebToken(APIView):
-    """
-    API View that receives a POST with a user's username and password.
-
-    Returns a JSON Web Token that can be used for authenticated requests.
-    """
-    throttle_classes = ()
-    permission_classes = ()
-    authentication_classes = ()
-    parser_classes = (parsers.FormParser, parsers.JSONParser,)
-    renderer_classes = (renderers.JSONRenderer,)
-    serializer_class = JSONWebTokenSerializer
-
-    def post(self, request):
-        serializer = self.serializer_class(data=request.DATA)
-        if serializer.is_valid():
-            return Response({'token': serializer.object['token']})
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

@@ -6,6 +6,8 @@ from .. import models, factories
 
 class UsersEndpointTestCase(WebTest):
 
+    setup_auth = False
+
     def test_can_sign_up(self):
         _user = factories.UserFactory.build()
         assert _user.pk == None
@@ -42,6 +44,8 @@ class UsersEndpointTestCase(WebTest):
 
 
 class PostsEndpointTestCase(WebTest):
+
+    setup_auth = False
 
     def test_user_creates_post(self):
         user = factories.UserFactory()
