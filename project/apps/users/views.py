@@ -16,6 +16,9 @@ class UserView(viewsets.ModelViewSet):
         else:
             return (AllowAny(),)# permissions.IsStaffOrTargetUser(),)
 
+    #def create(self, request, *args, **kwargs):
+    #    return super(UserView, self).create(request, *args, **kwargs)
+
 
 class PostView(viewsets.ModelViewSet):
     serializer_class = serializers.PostSerializer
@@ -26,7 +29,6 @@ class PostView(viewsets.ModelViewSet):
             return (AllowAny(),)
         else:
             return super(PostView, self).get_permissions()
-        
 
     def pre_save(self, obj):
         obj.user = self.request.user
