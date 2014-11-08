@@ -12,6 +12,6 @@ urlpatterns = patterns('',
         views.PostView.as_view({'post': 'create', 'get': 'list'}),
         name='posts'
     ),
-    url(r'^login/$', 'rest_framework_jwt.views.obtain_jwt_token', name='login'),
+    url(r'^login/$', views.LoginView.as_view(), name='login'),
     #url(r'^users/login/$', include('core.urls', namespace='apiv1')),
 )

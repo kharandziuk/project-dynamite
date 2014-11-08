@@ -25,7 +25,8 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         #'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.BasicAuthentication',
-        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        #'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        'users.authentication.JSONWebTokenAuthentication',
     ),
     #'DEFAULT_RENDERER_CLASSES': (
     #    'djangorestframework_camel_case.CamelCaseJSONRenderer',
