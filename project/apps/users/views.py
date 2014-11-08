@@ -16,19 +16,23 @@ class UserView(viewsets.ModelViewSet):
         else:
             return (AllowAny(),)# permissions.IsStaffOrTargetUser(),)
 
-    #def create(self, request, *args, **kwargs):
-    #    return super(UserView, self).create(request, *args, **kwargs)
 
+class LoginView(APIView):
+    """
+    API View that receives a POST with a user's username and password.
 
-class PostView(viewsets.ModelViewSet):
-    serializer_class = serializers.PostSerializer
-    queryset = models.Post.objects.all()
+    Returns a JSON Web Token that can be used for authenticated requests.
+    """
+    throttle_classes = ()
+    permission_classes = ()
+    authentication_classes = ()
+    parser_classes = (parsers.FormParser, parsers.JSONParser,)
+    renderer_classes = (renderers.JSONRenderer,)
+    serializer_class = serializers.JSONWebTokenSerializer
 
-    def get_permissions(self):
-        if self.request.method == 'GET':
-            return (AllowAny(),)
-        else:
-            return super(PostView, self).get_permissions()
+    def post(self, request):
+        serializer = self.serializer_class(data=request.DATA)
+        if serializer.is_valid():
+            return Response({'token': serializer.object['token']})
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    def pre_save(self, obj):
-        obj.user = self.request.user
