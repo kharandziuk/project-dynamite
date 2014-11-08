@@ -17,17 +17,6 @@ class UserView(viewsets.ModelViewSet):
             return (AllowAny(),)# permissions.IsStaffOrTargetUser(),)
 
 
-class PostView(viewsets.ModelViewSet):
-    serializer_class = serializers.PostSerializer
-    queryset = models.Post.objects.all()
-
-    def get_permissions(self):
-        if self.request.method == 'GET':
-            return (AllowAny(),)
-        else:
-            return super(PostView, self).get_permissions()
-        
-
     def pre_save(self, obj):
         obj.user = self.request.user
 

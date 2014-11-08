@@ -6,6 +6,8 @@ Pillow
 unipath
 psycopg2
 South
+requests
+mock
 
 #DEV
 Fabric
