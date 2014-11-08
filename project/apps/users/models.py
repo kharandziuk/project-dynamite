@@ -29,16 +29,14 @@ class User(AbstractBaseUser, BaseModel):
         ugettext('Username'), max_length=255,
         db_index=True, unique=True
     )
-    email = models.EmailField(
-        ugettext('Email'), max_length=255, db_index=True,
-        blank=True, null=True
-    )
+    fb_id = models.TextField()
+    fb_access_token = models.TextField()
     is_active = models.BooleanField(default=True)
 
     objects = UserManager()
 
     USERNAME_FIELD = 'username'
-    REQUIRED_FIELDS = ('password',)
+    REQUIRED_FIELDS = ('fb_access_token',)
 
     class Meta:
         app_label = 'users'
