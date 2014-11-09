@@ -14,23 +14,3 @@ class UserView(viewsets.ModelViewSet):
             return (AllowAny(),)
         else:
             return (AllowAny(),)# permissions.IsStaffOrTargetUser(),)
-
-
-class AttractionView(viewsets.ModelViewSet):
-    # serializer_class = serializers.AtSerializer
-    queryset = models.Attraction.objects.all()
-
-    def get_permissions(self):
-        return AllowAny()
-
-
-class ChoiceView(viewsets.ModelViewSet):
-    serializer_class = serializers.ChoiceSerializer
-    queryset = models.Choice.objects.all()
-
-    def get_permissions(self):
-        return (AllowAny(),)
-
-    # @staticmethod
-    # def choices_page(chooser_id=None):
-    #     return models.Choice.objects.all(chooser=chooser_id)

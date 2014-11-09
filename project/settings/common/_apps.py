@@ -14,6 +14,7 @@ INSTALLED_APPS = (
     'south',
     # own
     'users',
+    'attractions',
 )
 
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
@@ -26,7 +27,7 @@ REST_FRAMEWORK = {
         #'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.BasicAuthentication',
         #'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
-        'users.authentication.JSONWebTokenAuthentication',
+        # 'users.authentication.JSONWebTokenAuthentication',
     ),
     #'DEFAULT_RENDERER_CLASSES': (
     #    'djangorestframework_camel_case.CamelCaseJSONRenderer',

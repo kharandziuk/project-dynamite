@@ -51,52 +51,11 @@ class User(AbstractBaseUser, BaseModel):
         app_label = 'users'
 
 
-class ChoiceManager(models.Manager):
-    def create_choice(self, chooser, chosen):
-        """
-        Creates and saves a Choice with the given username and password.
-        """
-        choice = self.create(choser=chooser, chosen=chosen)
-        choice.save(using=self._db)
-        return choice
-
-
-class Choice(models.Model):
-    chooser = models.ForeignKey(User, default=None)
-    chosen = models.ForeignKey(User, default=None)
-    objects = ChoiceManager()
-
-    class Meta:
-        app_label = 'choice_options'
-        db_table = 'choice_options'
-
-
-class Attraction(BaseModel):
-    name = models.TextField()
-    description = models.TextField()
-    # TODO Implement photo
-    # photo = models.ImageField()
-    link = models.URLField()
-
-    class Meta:
-        app_label = 'attractions'
-
-
-class Event(BaseModel):
-    female = models.ForeignKey(User)
-    male = models.ForeignKey(User)
-    date = models.DateTimeField()
-    attraction = models.ForeignKey(Attraction)
-
-    class Meta:
-        app_label = 'events'
-
-
-class AttractionManager(models.Manager):
-    def create_attraction(self, name, description):
-        """
-        Creates and saves a User with the given username and password.
-        """
-        attraction = self.create(name=name, description=description)
-        attraction.save(using=self._db)
-        return attraction
+# class Event(BaseModel):
+#     female = models.ForeignKey(User)
+#     male = models.ForeignKey(User)
+#     date = models.DateTimeField()
+#     attraction = models.ForeignKey(Attraction)
+#
+#     class Meta:
+#         app_label = 'events'
