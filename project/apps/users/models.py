@@ -14,7 +14,6 @@ class BaseModel(models.Model):
 
 
 class UserManager(BaseUserManager):
-
     def create_user(self, username, password):
         """
         Creates and saves a User with the given username and password.
@@ -24,33 +23,39 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
+
 class User(AbstractBaseUser, BaseModel):
     username = models.CharField(
         ugettext('Username'), max_length=255,
         db_index=True, unique=True
     )
-    fb_id = models.TextField()
-    fb_access_token = models.TextField()
-    is_active = models.BooleanField(default=True)
+    email = models.EmailField(
+        ugettext('Email'), max_length=255, db_index=True,
+        blank=True, null=True
+    )
+    # is_active = models.BooleanField(default=True)
+    gender = models.BooleanField(default=True)
+
+    #TODO implement photo
+    # photo = models.ImageField()
+
+    lucky = models.BooleanField(default=False)
+    group_id = models.IntegerField(default=0)
 
     objects = UserManager()
 
     USERNAME_FIELD = 'username'
-    REQUIRED_FIELDS = ('fb_access_token',)
+    REQUIRED_FIELDS = ('password',)
 
     class Meta:
         app_label = 'users'
 
 
-class Post(BaseModel):
-    user = models.ForeignKey(User, related_name='posts')
-    title = models.CharField(
-        ugettext('Username'), max_length=255,
-        db_index=True
-    )
-    body = models.TextField()
-    
-
-    class Meta:
-        app_label = 'users'
-                     
+# class Event(BaseModel):
+#     female = models.ForeignKey(User)
+#     male = models.ForeignKey(User)
+#     date = models.DateTimeField()
+#     attraction = models.ForeignKey(Attraction)
+#
+#     class Meta:
+#         app_label = 'events'
